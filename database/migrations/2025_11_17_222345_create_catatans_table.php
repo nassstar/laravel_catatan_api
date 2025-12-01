@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
     Schema::create('catatan', function (Blueprint $table) {
-    $table->id();
-    $table->unsignedBigInteger('user_id');
-    $table->string('judul');
-    $table->text('isi')->nullable();
-    $table->timestamps();
+    $table->id()->autoIncrement();
+            $table->string('judul');
+            $table->text('isi');
+            $table->timestamps();
 
-    $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 });
 }
+public function down(): void
+    {
+        Schema::dropIfExists('catatans');
+    }
 };

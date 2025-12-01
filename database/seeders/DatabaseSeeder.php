@@ -17,8 +17,9 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        \App\Models\User::factory(10)->create()->each(function ($user) {
-        \App\Models\Catatan::factory(5)->create(['user_id' => $user->id]);
-    });
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
     }
 }
