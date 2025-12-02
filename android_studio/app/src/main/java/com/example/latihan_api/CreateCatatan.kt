@@ -46,6 +46,7 @@ class CreateCatatan : AppCompatActivity() {
             val payload = Catatan(
                 judul = judul,
                 isi = isi,
+                user_id = 1,
                 id = null
             )
 
