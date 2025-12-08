@@ -3,6 +3,7 @@ package com.example.latihan_api
 import android.content.Intent
 import android.os.Bundle
 import android.os.Message
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -58,7 +59,9 @@ class CreateCatatan : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    displayMessage("Gagal : ${response.message()}")
+                    val errorText = response.errorBody()?.string()
+                    Log.e("API_ERROR", "Error: $errorText")
+                    displayMessage("Gagal: $errorText")
                 }
             }
         }

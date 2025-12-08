@@ -1,62 +1,20 @@
 <?php
 
-use App\Models\Catatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CatatanController;
 
-Route::get('/catatan', function (Request $request) {
-    $data = Catatan::get();
+// USER
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::post('/users', [UserController::class, 'store']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
-    return response()->json($data);
-});
-
-Route::post('/catatan', function (Request $request) {
-    $catatan = new Catatan();
-    $catatan->judul = $request->input('judul');
-    $catatan->isi = $request->input('isi');
-    $catatan->save();
-
-    return response()->json($catatan);
-});
-
-Route::get('/catatan/{id}', function ($id) {
-    $catatan = Catatan::find($id);
-
-    return response()->json($catatan);
-});
-
-Route::put('/catatan/{id}', function (Request $request, $id) {
-    $catatan = Catatan::find($id);
-
-    if ($catatan) {
-        $catatan->judul = $request->input('judul');
-        $catatan->isi = $request->input('isi');
-        $catatan->save();
-    } else {
-        return response()->json([
-            'message' => 'Catatan yang ingin di update tidak ada'
-        ], 404);
-    }
-
-    return response()->json($catatan);
-});
-
-Route::delete('/catatan/{id}', function ($id) {
-    $catatan = Catatan::find($id);
-
-    if ($catatan) {
-        $catatan->delete();
-    } else {
-        return response()->json([
-            'message' => 'Catatan yang ingin dihapus tidak ada'
-        ], 404);
-    }
-
-    return response()->json([
-        'message' => 'Catatan berhasil dihapus'
-    ]);
-});
-
-// bikin api untuk user
-// crud user, kemudian maping catatan ke user tertentu
-// modifikasi crud catatan dengan menambahkan user sebagai pemilik catatan
+// CATATAN
+Route::get('/catatan', [CatatanController::class, 'index']);
+Route::get('/catatan/{id}', [CatatanController::class, 'show']);
+Route::post('/catatan', [CatatanController::class, 'store']);
+Route::put('/catatan/{id}', [CatatanController::class, 'update']);
+Route::delete('/catatan/{id}', [CatatanController::class, 'destroy']);

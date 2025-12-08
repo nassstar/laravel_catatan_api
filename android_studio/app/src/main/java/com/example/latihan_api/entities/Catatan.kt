@@ -4,5 +4,5 @@ data class Catatan(
     val id: Int? = null,
     val judul: String,
     val isi: String,
-    val user_id: Int? = null
+    val user_id: Int
 )

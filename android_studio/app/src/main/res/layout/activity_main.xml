@@ -23,6 +23,14 @@
         android:tooltipText="Tambah Catatan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/btnNavigate"/>
+        android:id="@+id/btnNavigate"/>\
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        android:padding="20dp"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_catatan"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
