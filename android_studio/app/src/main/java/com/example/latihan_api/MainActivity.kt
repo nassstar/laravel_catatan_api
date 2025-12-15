@@ -36,7 +36,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setupEvents() {
-        adapter = CatatanAdapter(mutableListOf())
+        adapter = CatatanAdapter(mutableListOf(), object : CatatanAdapter.CatatanItemEvents {
+            override fun onEdit(catatan: Catatan) {
+                val intent = Intent(this@MainActivity, EditCatatanActivity::class.java)
+                intent.putExtra("id_catatan", catatan.id)
+
+                startActivity(intent)
+            }
+        })
+
         binding.container.adapter = adapter
         binding.container.layoutManager = LinearLayoutManager(this)
 
